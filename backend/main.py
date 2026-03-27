@@ -14,6 +14,7 @@ from .logs.logger import log_request, get_recent_logs
 from .analytics.metrics import get_daily_metrics, get_total_usage_stats
 from .core.ai_engine import get_ai_engine
 from .core.router import get_ai_router
+from .connectors.uacl import get_uacl
 
 app = FastAPI(title="ExpertAI Server")
 
@@ -63,60 +64,35 @@ async def settings_page(request: Request):
 async def tools_page(request: Request):
     return templates.TemplateResponse(request=request, name="tools.html")
 
-# OpenAI-compatible Chat Completions endpoint
+# Universal AI Connector Layer (UACL) integration for Chat Completions
 @app.post("/v1/chat/completions")
 async def chat_completions(
     request: Request,
     body: ChatCompletionRequest,
     x_api_key: Optional[str] = Header(None)
 ):
-    if not x_api_key or not validate_api_key(x_api_key):
-        raise HTTPException(status_code=401, detail="Invalid API Key")
+    # Route through UACL middleware for protocol adaptation and inference
+    uacl = get_uacl()
+    result = await uacl.process_request(
+        protocol="openai",
+        payload=body.model_dump(),
+        api_key=x_api_key
+    )
 
-    query = body.messages[-1]["content"]
+    if "error" in result:
+        raise HTTPException(status_code=result.get("code", 401), detail=result["error"])
 
-    # Optional Routing
-    router = get_ai_router()
-    task_type = router.route_query(query)
-
-    # Inference
-    engine = get_ai_engine()
-    result = engine.generate_response(query, max_tokens=body.max_tokens)
-
-    # Logging
+    # Logging (Post-process)
     log_request(
         api_key=x_api_key,
-        query=query,
-        response=result["response"],
-        tokens=result["tokens"],
-        response_time=result["response_time"],
+        query=body.messages[-1]["content"],
+        response=result["choices"][0]["message"]["content"],
+        tokens=result["usage"]["total_tokens"],
+        response_time=float(request.headers.get("X-Process-Time", 0.5)), # Simplified
         ip_address=request.client.host
     )
 
-    # Increment usage
-    increment_usage(x_api_key)
-
-    return {
-        "id": f"chatcmpl-{int(time.time())}",
-        "object": "chat.completion",
-        "created": int(time.time()),
-        "model": body.model,
-        "choices": [
-            {
-                "index": 0,
-                "message": {
-                    "role": "assistant",
-                    "content": result["response"]
-                },
-                "finish_reason": "stop"
-            }
-        ],
-        "usage": {
-            "prompt_tokens": 0, # Simplified
-            "completion_tokens": result["tokens"],
-            "total_tokens": result["tokens"]
-        }
-    }
+    return result
 
 @app.get("/v1/models")
 async def list_models():
