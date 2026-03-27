@@ -1,29 +1,61 @@
 # ExpertAI Platform - Multi-Version Repository
 
-Welcome to the ExpertAI Platform repository. This project is organized into three distinct versions to suit different hosting requirements and performance goals.
+Welcome to the ExpertAI Platform repository. This project is organized into four distinct versions to suit different hosting requirements and performance goals.
 
-## Project Versions
+## Full Project Details & Features
 
-### 1. [Simple Version](./versions/simple-version)
-The baseline implementation featuring:
-- OpenAI-compatible API
-- Task-based Expert AI routing
-- Admin Dashboard with Logs & Analytics
-- Basic Plugin support
+ExpertAI is a modular, open-source platform that enables you to host your own AI experts locally or in a distributed mesh network.
 
-### 2. [Self-Evolving Version](./versions/self-evolving-version)
-An advanced version that focuses on automated growth:
-- **Dynamic Tool Discovery**: Automatically identifies and integrates new plugins.
-- **Expert Learning**: Adapts the routing engine based on feedback.
-- **Automated Management**: Self-optimizes server parameters for performance.
-
-### 3. [Mesh Network Version](./versions/mesh-network-version)
-The decentralized implementation for distributed devices:
-- **Node Registry**: Connect multiple devices (Android, Laptop, Server) into one network.
-- **Distributed Experts**: Distribute the memory load across multiple machines.
-- **Fault-Tolerant Load Balancing**: Automatically failover tasks between nodes.
+### Core Features:
+- **Expert Division (MoE)**: Routing system that selects specialized models (Chat, Code, Math, etc.) based on user tasks.
+- **OpenAI-compatible API**: Connect existing tools like OpenClaw, LangChain, and more.
+- **Admin Dashboard**: Real-time server monitoring, logs, and advanced analytics.
+- **Plugin System**: Modular tools for web searching, file reading, and more.
+- **Cross-Platform Support**: Optimized scripts for Linux, Windows, and Termux.
+- **Developer SDKs**: Official Python and JavaScript libraries for rapid integration.
 
 ---
+
+## Project Versions & Installation
+
+### 1. [Simple Version](./versions/simple-version)
+**Baseline Implementation**
+- **Features**: OpenAI API, Expert AI routing, Dashboard, Plugin support.
+- **Installation**:
+  ```bash
+  cd versions/simple-version
+  bash scripts/start.sh (Linux) or scripts/start.bat (Windows)
+  ```
+
+### 2. [Self-Evolving Version](./versions/self-evolving-version)
+**Automated Growth**
+- **Features**: Dynamic tool discovery, Expert pattern learning, Self-optimization.
+- **Installation**:
+  ```bash
+  cd versions/self-evolving-version
+  bash scripts/start.sh (Linux) or scripts/start.bat (Windows)
+  ```
+
+### 3. [Mesh Network Version](./versions/mesh-network-version)
+**Decentralized AI**
+- **Features**: Node registry, Distributed experts, Load balancing across multiple devices.
+- **Installation**:
+  ```bash
+  cd versions/mesh-network-version
+  bash scripts/start.sh (Linux) or scripts/start.bat (Windows)
+  ```
+
+### 4. [Termux Version](./versions/termux-version)
+**Mobile Optimized**
+- **Features**: Specialized setup for Android Termux with optimized dependencies and library support.
+- **Installation (Termux)**:
+  ```bash
+  cd versions/termux-version
+  bash scripts/termux_setup.sh
+  ```
+
+---
+
 ## Repository Link
 [https://github.com/abdulraheemnohri/OpenBrain-Server](https://github.com/abdulraheemnohri/OpenBrain-Server)
 

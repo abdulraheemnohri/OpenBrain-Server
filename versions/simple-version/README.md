@@ -1,34 +1,26 @@
-# ExpertAI Server
+# ExpertAI Platform - Simple Version
 
-**Self-Hosted AI Platform with API, Dashboard, and Multi-System Support**
-
-ExpertAI is an open-source AI server designed to host Large Language Models (LLMs) locally, provide an OpenAI-compatible API, and offer a powerful admin dashboard for monitoring and management.
+This is the baseline implementation of the ExpertAI Platform, designed for local hosting with a powerful feature set.
 
 ## Features
-- **OpenAI-compatible API**: Connect your favorite AI tools like OpenClaw, LangChain, and more.
-- **Admin Dashboard**: Manage API keys, view real-time logs, and monitor usage analytics.
-- **Local AI Hosting**: Run Qwen models (27B GPTQ) on your hardware.
-- **Cross-Platform**: Works on Windows, Linux, and Termux (Android).
-- **Keyword Routing**: Automatically categorizes queries for specialized handling.
+- **Expert Division (MoE)**: Routing system that selects specialized models (Chat, Code, Math, etc.) based on user tasks.
+- **OpenAI-compatible API**: Standardized endpoint for integration with existing tools like OpenClaw and LangChain.
+- **Admin Dashboard**: Real-time server monitoring, logs, and advanced analytics.
+- **Plugin System**: Support for modular tools like `web_search` and `file_reader`.
 
-## Quick Start
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/abdulraheemnohri/OpenBrain-Server.git
-   cd OpenBrain-Server
-   ```
-2. Run the startup script for your platform:
-   - **Linux**: `bash scripts/start.sh`
-   - **Windows**: `scripts/start.bat`
-   - **Termux**: `bash scripts/termux_setup.sh`
+## Installation
 
-3. Access the Dashboard:
-   - Open `http://localhost:8000` in your browser.
+### Linux
+1. Clone the repository
+2. Run `bash scripts/start.sh`
+
+### Windows
+1. Clone the repository
+2. Run `scripts/start.bat`
+
+### Quick Start
+Access the dashboard at `http://localhost:8000`.
 
 ## Documentation
-- [Installation Guide](docs/install.md)
 - [API Reference](docs/api.md)
-- [Architecture](docs/architecture.md)
-
-## License
-MIT License
+- [Architecture Guide](docs/architecture.md)
