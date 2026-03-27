@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpertAI Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-slate-900 text-white min-h-screen p-4">
+            <h1 class="text-2xl font-bold mb-8 text-blue-400">ExpertAI</h1>
+            <nav>
+                <a href="/" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Dashboard</a>
+                <a href="/apikeys" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">API Keys</a>
+                <a href="/logs" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Logs</a>
+                <a href="/analytics" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Analytics</a>
+                <a href="/tools" class="block py-2 px-4 bg-slate-800 rounded mb-2">Tools</a>
+                <a href="/settings" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Settings</a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 p-8">
+            <header class="mb-8 flex justify-between items-center">
+                <h2 class="text-3xl font-bold">Installed Tools & Plugins</h2>
+                <div class="text-sm bg-blue-100 text-blue-800 py-1 px-3 rounded-full font-semibold">Active Extensions</div>
+            </header>
+
+            <div id="toolsList" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tools will be here -->
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/tools.js"></script>
+</body>
+</html>

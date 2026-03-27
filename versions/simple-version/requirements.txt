@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+transformers
+auto-gptq
+jinja2
+httpx
+pydantic
+torch
+accelerate

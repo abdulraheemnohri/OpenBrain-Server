@@ -1,0 +1,16 @@
+/* Global styles for OpenBrain Server Dashboard */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+.shadow-inner-lg {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.hover-grow:hover {
+    transform: scale(1.02);
+}
