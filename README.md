@@ -14,8 +14,8 @@ ExpertAI is an open-source AI server designed to host Large Language Models (LLM
 ## Quick Start
 1. Clone the repository:
    ```bash
-   git clone https://github.com/openbrain/openbrain-server.git
-   cd openbrain-server
+   git clone https://github.com/abdulraheemnohri/OpenBrain-Server.git
+   cd OpenBrain-Server
    ```
 2. Run the startup script for your platform:
    - **Linux**: `bash scripts/start.sh`
