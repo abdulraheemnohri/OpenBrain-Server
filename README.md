@@ -1,8 +1,8 @@
-# OpenBrain Server
+# ExpertAI Server
 
 **Self-Hosted AI Platform with API, Dashboard, and Multi-System Support**
 
-OpenBrain is an open-source AI server designed to host Large Language Models (LLMs) locally, provide an OpenAI-compatible API, and offer a powerful admin dashboard for monitoring and management.
+ExpertAI is an open-source AI server designed to host Large Language Models (LLMs) locally, provide an OpenAI-compatible API, and offer a powerful admin dashboard for monitoring and management.
 
 ## Features
 - **OpenAI-compatible API**: Connect your favorite AI tools like OpenClaw, LangChain, and more.

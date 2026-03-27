@@ -1,8 +1,14 @@
-# API Reference
+# ExpertAI Platform API Reference
 
-OpenBrain Server supports OpenAI-compatible API endpoints for easy integration.
+ExpertAI Platform provides a standardized OpenAI-compatible API and custom management endpoints.
 
-## Chat Completions
+## Base URL
+`http://localhost:8000`
+
+## Authentication
+Every request to the AI models must include an `x-api-key` header.
+
+## Chat Completions (OpenAI Compatible)
 **POST** `/v1/chat/completions`
 
 ### Header
@@ -11,9 +17,9 @@ OpenBrain Server supports OpenAI-compatible API endpoints for easy integration.
 ### Request Body
 ```json
 {
-  "model": "qwen-3.5-27b",
+  "model": "chat-expert",
   "messages": [
-    { "role": "user", "content": "Hello!" }
+    { "role": "user", "content": "Write a python script to search the web" }
   ],
   "max_tokens": 512,
   "temperature": 0.7
@@ -21,13 +27,34 @@ OpenBrain Server supports OpenAI-compatible API endpoints for easy integration.
 ```
 
 ### Response
-Standard OpenAI-compatible chat completion JSON.
+```json
+{
+  "id": "chatcmpl-1729123456",
+  "object": "chat.completion",
+  "created": 1729123456,
+  "model": "chat-expert",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Sure, here is the code... [TOOL EXECUTION]: Searching the web for..."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "completion_tokens": 50,
+    "total_tokens": 50
+  }
+}
+```
 
-## Admin API
-Used by the dashboard for internal management.
+## Admin Management API
 
 - `GET /api/admin/keys`: List all API keys.
 - `POST /api/admin/keys?usage_limit=1000`: Generate a new key.
 - `DELETE /api/admin/keys/{key}`: Delete an existing key.
 - `GET /api/admin/logs`: List recent activity logs.
 - `GET /api/admin/analytics`: Get detailed analytics data.
+- `GET /api/admin/tools`: List all installed tools and plugins.

@@ -5,6 +5,8 @@ class AIRouter:
         self.experts = {
             "coding": ["python", "javascript", "code", "function", "class", "script"],
             "math": ["calculate", "solve", "math", "integral", "derivative", "sum", "multiplication"],
+            "reasoning": ["think", "reason", "step by step", "complex", "analyze"],
+            "translation": ["translate", "language", "english", "hindi", "spanish", "french"],
             "general": []
         }
 

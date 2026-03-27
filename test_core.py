@@ -6,7 +6,7 @@ from backend.auth.security import validate_api_key
 from backend.database.models import setup_models
 from backend.core.router import AIRouter
 
-class TestOpenBrainCore(unittest.TestCase):
+class TestExpertAICore(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Set up a test database if needed or just use the default initialized one for basic unit tests

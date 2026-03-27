@@ -15,7 +15,7 @@ from .analytics.metrics import get_daily_metrics, get_total_usage_stats
 from .core.ai_engine import get_ai_engine
 from .core.router import get_ai_router
 
-app = FastAPI(title="OpenBrain Server")
+app = FastAPI(title="ExpertAI Server")
 
 # Initialize database
 setup_models()
@@ -58,6 +58,10 @@ async def analytics_page(request: Request):
 @app.get("/settings")
 async def settings_page(request: Request):
     return templates.TemplateResponse(request=request, name="settings.html")
+
+@app.get("/tools")
+async def tools_page(request: Request):
+    return templates.TemplateResponse(request=request, name="tools.html")
 
 # OpenAI-compatible Chat Completions endpoint
 @app.post("/v1/chat/completions")
