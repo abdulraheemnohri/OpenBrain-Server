@@ -1,34 +1,31 @@
-# ExpertAI Server
+# ExpertAI Platform - Multi-Version Repository
 
-**Self-Hosted AI Platform with API, Dashboard, and Multi-System Support**
+Welcome to the ExpertAI Platform repository. This project is organized into three distinct versions to suit different hosting requirements and performance goals.
 
-ExpertAI is an open-source AI server designed to host Large Language Models (LLMs) locally, provide an OpenAI-compatible API, and offer a powerful admin dashboard for monitoring and management.
+## Project Versions
 
-## Features
-- **OpenAI-compatible API**: Connect your favorite AI tools like OpenClaw, LangChain, and more.
-- **Admin Dashboard**: Manage API keys, view real-time logs, and monitor usage analytics.
-- **Local AI Hosting**: Run Qwen models (27B GPTQ) on your hardware.
-- **Cross-Platform**: Works on Windows, Linux, and Termux (Android).
-- **Keyword Routing**: Automatically categorizes queries for specialized handling.
+### 1. [Simple Version](./versions/simple-version)
+The baseline implementation featuring:
+- OpenAI-compatible API
+- Task-based Expert AI routing
+- Admin Dashboard with Logs & Analytics
+- Basic Plugin support
 
-## Quick Start
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/abdulraheemnohri/OpenBrain-Server.git
-   cd OpenBrain-Server
-   ```
-2. Run the startup script for your platform:
-   - **Linux**: `bash scripts/start.sh`
-   - **Windows**: `scripts/start.bat`
-   - **Termux**: `bash scripts/termux_setup.sh`
+### 2. [Self-Evolving Version](./versions/self-evolving-version)
+An advanced version that focuses on automated growth:
+- **Dynamic Tool Discovery**: Automatically identifies and integrates new plugins.
+- **Expert Learning**: Adapts the routing engine based on feedback.
+- **Automated Management**: Self-optimizes server parameters for performance.
 
-3. Access the Dashboard:
-   - Open `http://localhost:8000` in your browser.
+### 3. [Mesh Network Version](./versions/mesh-network-version)
+The decentralized implementation for distributed devices:
+- **Node Registry**: Connect multiple devices (Android, Laptop, Server) into one network.
+- **Distributed Experts**: Distribute the memory load across multiple machines.
+- **Fault-Tolerant Load Balancing**: Automatically failover tasks between nodes.
 
-## Documentation
-- [Installation Guide](docs/install.md)
-- [API Reference](docs/api.md)
-- [Architecture](docs/architecture.md)
+---
+## Repository Link
+[https://github.com/abdulraheemnohri/OpenBrain-Server](https://github.com/abdulraheemnohri/OpenBrain-Server)
 
 ## License
-MIT License
+MIT

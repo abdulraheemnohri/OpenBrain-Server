@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpertAI Logs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-slate-900 text-white min-h-screen p-4 flex flex-col">
+            <h1 class="text-3xl font-extrabold mb-10 text-blue-400">ExpertAI</h1>
+            <nav class="flex-grow">
+                <a href="/" class="block py-3 px-5 hover:bg-slate-800 rounded-lg mb-2 transition">Dashboard</a>
+                <a href="/apikeys" class="block py-3 px-5 hover:bg-slate-800 rounded-lg mb-2 transition">API Keys</a>
+                <a href="/logs" class="block py-3 px-5 bg-slate-800 rounded-lg mb-2 transition">Logs</a>
+                <a href="/analytics" class="block py-3 px-5 hover:bg-slate-800 rounded-lg mb-2 transition">Analytics</a>
+                <a href="/settings" class="block py-3 px-5 hover:bg-slate-800 rounded-lg mb-2 transition">Settings</a>
+                <a href="/tools" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Tools</a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 p-10">
+            <header class="mb-12 flex justify-between items-center">
+                <h2 class="text-4xl font-extrabold text-gray-800">System Logs</h2>
+                <div class="text-md font-medium text-gray-600 bg-white px-4 py-2 rounded-lg shadow-sm">Real-time Activity</div>
+            </header>
+
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="py-5 px-6 font-bold text-gray-700 uppercase tracking-wider text-sm">Timestamp</th>
+                                <th class="py-5 px-6 font-bold text-gray-700 uppercase tracking-wider text-sm">API Key</th>
+                                <th class="py-5 px-6 font-bold text-gray-700 uppercase tracking-wider text-sm">Query</th>
+                                <th class="py-5 px-6 font-bold text-gray-700 uppercase tracking-wider text-sm">Response Time</th>
+                                <th class="py-5 px-6 font-bold text-gray-700 uppercase tracking-wider text-sm">Tokens</th>
+                                <th class="py-5 px-6 font-bold text-gray-700 uppercase tracking-wider text-sm">IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logsTableBody" class="divide-y divide-gray-100">
+                            <!-- Logs will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/logs.js"></script>
+</body>
+</html>
