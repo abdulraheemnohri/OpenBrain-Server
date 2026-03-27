@@ -153,3 +153,8 @@ async def admin_get_analytics():
         "daily": get_daily_metrics(),
         "total": get_total_usage_stats()
     }
+
+@app.get("/api/admin/tools")
+async def admin_get_tools():
+    from .tools.tool_manager import get_tool_manager
+    return get_tool_manager().get_available_tools()

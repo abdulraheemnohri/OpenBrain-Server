@@ -1,6 +1,7 @@
 import time
 from .model_loader import load_expert_model, TORCH_AVAILABLE
 from .router import get_ai_router
+from ..tools.tool_manager import get_tool_manager
 
 class AIEngine:
     def __init__(self):
@@ -8,6 +9,7 @@ class AIEngine:
         # In a very resource-constrained environment, we'd unload them when not in use.
         self.experts = {}
         self.router = get_ai_router()
+        self.tool_manager = get_tool_manager()
         self.current_expert = None
 
     def generate_response(self, query: str, max_tokens: int = 512) -> dict:
@@ -60,6 +62,15 @@ class AIEngine:
         # Robust response cleaning: remove prompt if it's mirrored
         if response_text.startswith(query):
             response_text = response_text[len(query):].strip()
+
+        # Tool detection and execution logic (Mock)
+        if "search" in query.lower() and "web_search" in self.tool_manager.tools:
+            tool_result = self.tool_manager.execute_tool("web_search", query)
+            response_text += f"\n\n[TOOL EXECUTION]: {tool_result}"
+        elif "read" in query.lower() and "file_reader" in self.tool_manager.tools:
+            # Attempt to extract path if exists or use query
+            tool_result = self.tool_manager.execute_tool("file_reader", "config.txt")
+            response_text += f"\n\n[TOOL EXECUTION]: {tool_result}"
 
         end_time = time.time()
         response_time = end_time - start_time
