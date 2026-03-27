@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBrain API Keys</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-slate-900 text-white min-h-screen p-4">
+            <h1 class="text-2xl font-bold mb-8">OpenBrain</h1>
+            <nav>
+                <a href="/" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Dashboard</a>
+                <a href="/apikeys" class="block py-2 px-4 bg-slate-800 rounded mb-2">API Keys</a>
+                <a href="/logs" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Logs</a>
+                <a href="/analytics" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Analytics</a>
+                <a href="/settings" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Settings</a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 p-8">
+            <header class="mb-8 flex justify-between items-center">
+                <h2 class="text-3xl font-bold">API Key Management</h2>
+                <button onclick="generateNewKey()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow-lg transition duration-200">Generate New Key</button>
+            </header>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50">
+                        <tr class="border-b">
+                            <th class="py-4 px-6 font-semibold text-gray-700">API Key</th>
+                            <th class="py-4 px-6 font-semibold text-gray-700">Status</th>
+                            <th class="py-4 px-6 font-semibold text-gray-700">Usage Limit</th>
+                            <th class="py-4 px-6 font-semibold text-gray-700">Usage Count</th>
+                            <th class="py-4 px-6 font-semibold text-gray-700">Created At</th>
+                            <th class="py-4 px-6 font-semibold text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="apiKeysBody" class="divide-y divide-gray-200">
+                        <!-- API keys will be listed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/apikeys.js"></script>
+</body>
+</html>

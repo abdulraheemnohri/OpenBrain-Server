@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBrain Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-slate-900 text-white min-h-screen p-4">
+            <h1 class="text-2xl font-bold mb-8">OpenBrain</h1>
+            <nav>
+                <a href="/" class="block py-2 px-4 bg-slate-800 rounded mb-2">Dashboard</a>
+                <a href="/apikeys" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">API Keys</a>
+                <a href="/logs" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Logs</a>
+                <a href="/analytics" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Analytics</a>
+                <a href="/settings" class="block py-2 px-4 hover:bg-slate-800 rounded mb-2">Settings</a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 p-8">
+            <header class="mb-8 flex justify-between items-center">
+                <h2 class="text-3xl font-bold">Server Overview</h2>
+                <div class="text-sm bg-green-100 text-green-800 py-1 px-3 rounded-full font-semibold">Server Online</div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-gray-500 mb-2">Total Requests</h3>
+                    <p id="totalRequests" class="text-3xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-gray-500 mb-2">Total Tokens</h3>
+                    <p id="totalTokens" class="text-3xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-gray-500 mb-2">Avg. Response Time</h3>
+                    <p id="avgResponseTime" class="text-3xl font-bold">0s</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-gray-500 mb-2">Active Keys</h3>
+                    <p id="activeKeys" class="text-3xl font-bold">0</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-4">Traffic (Last 30 Days)</h3>
+                    <canvas id="trafficChart"></canvas>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-4">Recent Logs</h3>
+                    <div id="logsTable" class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="py-2">Time</th>
+                                    <th class="py-2">Key</th>
+                                    <th class="py-2">Query</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsBody">
+                                <!-- Logs will be here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
