@@ -10,6 +10,8 @@ except ImportError:
 EXPERT_MODELS = {
     "coding": "Qwen/Qwen2.5-Coder-3B-Instruct-GPTQ-Int4",
     "math": "Qwen/Qwen2.5-Math-1.5B-Instruct-GPTQ-Int4",
+    "reasoning": "Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4",
+    "translation": "Qwen/Qwen2.5-1.5B-Instruct-GPTQ-Int4",
     "general": "Qwen/Qwen2.5-3B-Instruct-GPTQ-Int4"
 }
 
@@ -37,7 +39,7 @@ class MockTokenizer:
     def __call__(self, text, return_tensors=None):
         return {"input_ids": [1, 2, 3]}
     def decode(self, tokens, skip_special_tokens=True):
-        return "Mock response from OpenBrain"
+        return "Mock response from ExpertAI"
 
 class MockModel:
     def generate(self, **kwargs):
