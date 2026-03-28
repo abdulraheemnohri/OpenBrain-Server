@@ -3,10 +3,10 @@ import re
 class AIRouter:
     def __init__(self):
         self.experts = {
-            "coding": ["python", "javascript", "code", "function", "class", "script"],
-            "math": ["calculate", "solve", "math", "integral", "derivative", "sum", "multiplication"],
-            "reasoning": ["think", "reason", "step by step", "complex", "analyze"],
-            "translation": ["translate", "language", "english", "hindi", "spanish", "french"],
+            "coding": ["python", "javascript", "code", "function", "class", "script", "api", "html", "css", "program", "developer"],
+            "math": ["calculate", "solve", "math", "integral", "derivative", "sum", "multiplication", "equation", "formula", "algebra"],
+            "reasoning": ["think", "reason", "step by step", "complex", "analyze", "explain", "why", "logic", "strategy"],
+            "translation": ["translate", "language", "english", "hindi", "spanish", "french", "german", "chinese", "write in"],
             "general": []
         }
 

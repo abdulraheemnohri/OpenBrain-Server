@@ -145,3 +145,21 @@ async def admin_get_analytics():
 async def admin_get_tools():
     from .tools.tool_manager import get_tool_manager
     return get_tool_manager().get_available_tools()
+
+@app.get("/api/admin/settings")
+async def admin_get_settings():
+    from .database.db import get_db_connection
+    conn = get_db_connection()
+    rows = conn.execute("SELECT key, value FROM settings").fetchall()
+    conn.close()
+    return {row["key"]: row["value"] for row in rows}
+
+@app.post("/api/admin/settings")
+async def admin_save_settings(settings: Dict[str, str]):
+    from .database.db import get_db_connection
+    conn = get_db_connection()
+    for key, value in settings.items():
+        conn.execute("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)", (key, value))
+    conn.commit()
+    conn.close()
+    return {"status": "success"}

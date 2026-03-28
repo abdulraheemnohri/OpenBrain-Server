@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Logic for loading and saving settings
     console.log("Settings page loaded.");
+    loadSettings();
     fetchTools();
 });
 
@@ -20,14 +21,31 @@ async function fetchTools() {
     `).join('');
 }
 
+async function loadSettings() {
+    try {
+        const response = await fetch("/api/admin/settings");
+        const data = await response.json();
+        if (data.rate_limit) document.querySelector("input[type=\"number\"]").value = data.rate_limit;
+        if (data.token_limit) document.querySelectorAll("input[type=\"number\"]")[1].value = data.token_limit;
+    } catch (e) {
+        console.error("Failed to load settings:", e);
+    }
+}
+
 async function saveSettings() {
     const rateLimit = document.querySelector('input[type="number"]').value;
     const tokenLimit = document.querySelectorAll('input[type="number"]')[1].value;
 
-    // In a real system, we'd persist this in the DB.
-    alert(`Settings saved locally: Rate Limit = ${rateLimit}, Token Limit = ${tokenLimit}`);
-
-    // Example: fetch('/api/admin/settings', { method: 'POST', body: ... })
+    try {
+        await fetch("/api/admin/settings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ rate_limit: rateLimit, token_limit: tokenLimit })
+        });
+        alert("Settings saved successfully!");
+    } catch (e) {
+        alert("Failed to save settings.");
+    }
 }
 
 // Bind save button
