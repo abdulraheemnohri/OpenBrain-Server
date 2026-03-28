@@ -1,9 +1,10 @@
 fastapi
 uvicorn
-transformers
-auto-gptq
 jinja2
 httpx
 pydantic
-torch
+# Mobile-friendly LLM runtimes for Termux
+llama-cpp-python
+onnxruntime
+# accelerate (optional, but keep for small CPU optimizations)
 accelerate
