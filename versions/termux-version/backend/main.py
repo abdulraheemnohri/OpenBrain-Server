@@ -27,7 +27,7 @@ templates = Jinja2Templates(directory="dashboard")
 
 # Models for request bodies
 class ChatCompletionRequest(BaseModel):
-    model: str = "qwen-3.5-27b"
+    model: str = "mobile-expert"
     messages: List[dict]
     max_tokens: Optional[int] = 512
     temperature: Optional[float] = 0.7
@@ -100,10 +100,10 @@ async def list_models():
         "object": "list",
         "data": [
             {
-                "id": "qwen-3.5-27b",
+                "id": "mobile-expert-gguf",
                 "object": "model",
-                "created": 1677610602,
-                "owned_by": "openbrain"
+                "created": 1729123456,
+                "owned_by": "expertai"
             }
         ]
     }

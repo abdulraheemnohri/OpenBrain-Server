@@ -1,5 +1,5 @@
 import time
-from .model_loader import load_expert_model, TORCH_AVAILABLE
+from .model_loader import load_expert_model, LLAMA_CPP_AVAILABLE
 from .router import get_ai_router
 from ..tools.tool_manager import get_tool_manager
 
@@ -31,34 +31,23 @@ class AIEngine:
 
             self.experts[task_type] = load_expert_model(task_type)
 
-        tokenizer, model, device = self.experts[task_type]
+        llm, device = self.experts[task_type]
 
-        # Mock logic
-        if not TORCH_AVAILABLE:
-            response_text = f"[{task_type.upper()} EXPERT] Mock response for: {query}"
+        # Inference logic (Mobile Optimized)
+        if not LLAMA_CPP_AVAILABLE or (hasattr(llm, "__class__") and llm.__class__.__name__ == "MockLlama"):
+            response_text = f"[{task_type.upper()} MOBILE EXPERT] Mock response for: {query}"
             time.sleep(0.5)
-            return {
-                "response": response_text,
-                "tokens": 20,
-                "response_time": 0.5
-            }
-
-        # Inference logic
-        import torch
-        inputs = tokenizer(query, return_tensors="pt")
-        for k in inputs:
-            inputs[k] = inputs[k].to(device)
-
-        with torch.no_grad():
-            output = model.generate(
-                **inputs,
-                max_new_tokens=max_tokens,
-                temperature=0.7,
-                do_sample=True,
-                top_p=0.9
+            token_count = 20
+        else:
+            # Real llama-cpp-python inference
+            output = llm(
+                f"User: {query}\nAssistant:",
+                max_tokens=max_tokens,
+                stop=["User:", "\n"],
+                echo=False
             )
-
-        response_text = tokenizer.decode(output[0], skip_special_tokens=True)
+            response_text = output["choices"][0]["text"].strip()
+            token_count = output.get("usage", {}).get("completion_tokens", 20)
         # Robust response cleaning: remove prompt if it's mirrored
         if response_text.startswith(query):
             response_text = response_text[len(query):].strip()
