@@ -15,6 +15,7 @@ from .analytics.metrics import get_daily_metrics, get_total_usage_stats
 from .core.ai_engine import get_ai_engine
 from .core.router import get_ai_router
 from .connectors.uacl import get_uacl
+from .mesh.node_registry import get_node_registry
 
 app = FastAPI(title="ExpertAI Server")
 
@@ -108,6 +109,13 @@ async def list_models():
         ]
     }
 
+# Mesh Node Registration Endpoint
+@app.post("/api/mesh/register")
+async def mesh_register_node(node_id: str, expert_type: str, url: str):
+    registry = get_node_registry()
+    registry.register_node(node_id, expert_type, url)
+    return {"status": "success"}
+
 # Admin API Endpoints
 @app.get("/api/admin/keys")
 async def admin_get_keys():
@@ -138,3 +146,21 @@ async def admin_get_analytics():
 async def admin_get_tools():
     from .tools.tool_manager import get_tool_manager
     return get_tool_manager().get_available_tools()
+
+@app.get("/api/admin/settings")
+async def admin_get_settings():
+    from .database.db import get_db_connection
+    conn = get_db_connection()
+    rows = conn.execute("SELECT key, value FROM settings").fetchall()
+    conn.close()
+    return {row["key"]: row["value"] for row in rows}
+
+@app.post("/api/admin/settings")
+async def admin_save_settings(settings: Dict[str, str]):
+    from .database.db import get_db_connection
+    conn = get_db_connection()
+    for key, value in settings.items():
+        conn.execute("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)", (key, value))
+    conn.commit()
+    conn.close()
+    return {"status": "success"}
